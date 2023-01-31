@@ -23,23 +23,29 @@ transformer_Arcface = transforms.Compose([
         transforms.Normalize([0.485, 0.456, 0.406], [0.229, 0.224, 0.225])
     ])
 
-opt = TestOptions()
-opt.initialize()
-opt.parser.add_argument('-f') ## dummy arg to avoid bug
-opt = opt.parse()
-opt.pic_a_path = '/path/to/desired/face.png' ## or replace it with image from your own google drive
-opt.video_path = '/path/to/target/video.mp4' ## or replace it with video from your own google drive
-opt.output_path = '/path/to/output/video.mp4'
-opt.temp_path = './tmp'
-opt.Arc_path = './arcface_model/arcface_checkpoint.tar'
-opt.isTrain = False
-opt.use_mask = True  ## new feature up-to-date
-opt.no_simswaplogo = True
+# opt = TestOptions()
+# opt.initialize()
+# opt.parser.add_argument('-f') ## dummy arg to avoid bug
+# opt = opt.parse()
+# opt.pic_a_path = '/path/to/desired/face.png' ## or replace it with image from your own google drive
+# opt.video_path = '/path/to/target/video.mp4' ## or replace it with video from your own google drive
+# opt.output_path = '/path/to/output/video.mp4'
+# opt.temp_path = './tmp'
+# opt.Arc_path = './arcface_model/arcface_checkpoint.tar'
+# opt.isTrain = False
+# opt.use_mask = True  ## new feature up-to-date
+# opt.no_simswaplogo = True
 
-start_epoch, epoch_iter = 1, 0
-crop_sizes = [224,512]
-opt.crop_size = crop_sizes[0]
-crop_size = opt.crop_size
+# start_epoch, epoch_iter = 1, 0
+# crop_sizes = [224,512]
+# opt.crop_size = crop_sizes[0]
+# crop_size = opt.crop_size
+
+if __name__ == '__main__':
+    opt = TestOptions().parse()
+
+    start_epoch, epoch_iter = 1, 0
+    crop_size = opt.crop_size
 
 torch.nn.Module.dump_patches = True
 if crop_size == 512:
